@@ -26,8 +26,8 @@ public class CategoryController {
     }
 
     @GetMapping("/list")
-    public List<Category> allCategories(){
-        return categoryService.allCategories();
+    public ResponseEntity<List<Category>> allCategories(){
+        return new ResponseEntity<>(categoryService.allCategories(), HttpStatus.OK);
     }
 
     @PutMapping("/update/{categoryId}")
