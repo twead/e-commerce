@@ -1,6 +1,7 @@
 package com.ecommerce.demo.controller;
 
 import com.ecommerce.demo.common.ApiResponse;
+import com.ecommerce.demo.dto.CategoryDto;
 import com.ecommerce.demo.model.Category;
 import com.ecommerce.demo.service.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @PostMapping("/create")
-    public ResponseEntity<ApiResponse> createCategory(@RequestBody Category category){
+    public ResponseEntity<ApiResponse> createCategory(@RequestBody CategoryDto category){
         categoryService.createCategory(category);
         return new ResponseEntity<>(new ApiResponse(true,"category created"), HttpStatus.CREATED);
     }
@@ -30,7 +31,7 @@ public class CategoryController {
     }
 
     @PutMapping("/update/{categoryId}")
-    public ResponseEntity<ApiResponse> editCategory(@RequestParam("categoryId") Integer id, @RequestBody Category category ){
+    public ResponseEntity<ApiResponse> editCategory(@PathVariable("categoryId") Integer id, @RequestBody CategoryDto category ){
         if(!categoryService.existsById(id)){
             return new ResponseEntity<>(new ApiResponse(false,"category not found"), HttpStatus.NOT_FOUND);
         }

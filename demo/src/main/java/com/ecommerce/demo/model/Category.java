@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "category")
@@ -21,10 +20,10 @@ public class Category {
     private Integer id;
 
     @Column(name = "category_name")
-    private @NotBlank String categoryName;
+    private String categoryName;
 
-    private @NotBlank String description;
+    private String description;
 
     @Column(name = "image_url")
-    private @NotBlank String imageUrl;
+    private String imageUrl;
 }

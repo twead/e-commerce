@@ -1,5 +1,6 @@
 package com.ecommerce.demo.service;
 
+import com.ecommerce.demo.dto.CategoryDto;
 import com.ecommerce.demo.model.Category;
 import com.ecommerce.demo.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +14,11 @@ public class CategoryService {
 
     private final CategoryRepository categoryRepository;
 
-    public void createCategory(Category category){
+    public void createCategory(CategoryDto createCategory){
+        Category category = new Category();
+        category.setCategoryName(createCategory.getCategoryName());
+        category.setDescription(createCategory.getDescription());
+        category.setImageUrl(createCategory.getImageUrl());
         categoryRepository.save(category);
     }
 
@@ -21,15 +26,16 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public void editCategory(Integer id, Category category) {
-        Category oldCategory = categoryRepository.getById(id);
-        oldCategory.setCategoryName(category.getCategoryName());
-        oldCategory.setDescription(category.getDescription());
-        oldCategory.setImageUrl(category.getImageUrl());
-        categoryRepository.save(oldCategory);
+    public void editCategory(Integer id, CategoryDto updateCategory) {
+        Category category = categoryRepository.getById(id);
+        category.setCategoryName(updateCategory.getCategoryName());
+        category.setDescription(updateCategory.getDescription());
+        category.setImageUrl(updateCategory.getImageUrl());
+        categoryRepository.save(category);
     }
 
     public boolean existsById(Integer id) {
         return categoryRepository.findById(id).isPresent();
     }
+
 }
