@@ -28,4 +28,8 @@ public class CategoryService {
         oldCategory.setImageUrl(category.getImageUrl());
         categoryRepository.save(oldCategory);
     }
+
+    public boolean existsById(Integer id) {
+        return categoryRepository.findById(id).isPresent();
+    }
 }
