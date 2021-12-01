@@ -2,6 +2,7 @@ package com.ecommerce.demo.controller;
 
 import com.ecommerce.demo.common.ApiResponse;
 import com.ecommerce.demo.dto.ProductDto;
+import com.ecommerce.demo.exception.EcommerceCustomException;
 import com.ecommerce.demo.model.Category;
 import com.ecommerce.demo.service.CategoryService;
 import com.ecommerce.demo.service.ProductService;
@@ -38,7 +39,7 @@ public class ProductController {
     }
 
     @PostMapping("/update/{productId}")
-    public ResponseEntity<ApiResponse> editProduct(@PathVariable("productId") Integer id, @RequestBody ProductDto product){
+    public ResponseEntity<ApiResponse> editProduct(@PathVariable("productId") Integer id, @RequestBody ProductDto product) throws EcommerceCustomException {
         Optional<Category> category = categoryService.findById(product.getCategoryId());
         if(category.isEmpty()){
             return new ResponseEntity<>(new ApiResponse(false,"category does not exists"), HttpStatus.BAD_REQUEST);

@@ -1,6 +1,7 @@
 package com.ecommerce.demo.service;
 
 import com.ecommerce.demo.dto.ProductDto;
+import com.ecommerce.demo.exception.EcommerceCustomException;
 import com.ecommerce.demo.model.Category;
 import com.ecommerce.demo.model.Product;
 import com.ecommerce.demo.repository.ProductRepository;
@@ -47,10 +48,10 @@ public class ProductService {
         return productDto;
     }
 
-    public void editProduct(ProductDto productDto, Integer id) {
+    public void editProduct(ProductDto productDto, Integer id) throws EcommerceCustomException {
         Optional<Product> optionalProduct = productRepository.findById(id);
         if(optionalProduct.isEmpty()){
-            throw new RuntimeException("product not exists");
+            throw new EcommerceCustomException("product not exists");
         }
         Product product = optionalProduct.get();
         product.setName(productDto.getName());
