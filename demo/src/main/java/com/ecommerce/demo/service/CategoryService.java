@@ -5,6 +5,8 @@ import com.ecommerce.demo.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CategoryService {
@@ -15,4 +17,15 @@ public class CategoryService {
         categoryRepository.save(category);
     }
 
+    public List<Category> allCategories(){
+        return categoryRepository.findAll();
+    }
+
+    public void editCategory(Integer id, Category category) {
+        Category oldCategory = categoryRepository.getById(id);
+        oldCategory.setCategoryName(category.getCategoryName());
+        oldCategory.setDescription(category.getDescription());
+        oldCategory.setImageUrl(category.getImageUrl());
+        categoryRepository.save(oldCategory);
+    }
 }

@@ -5,6 +5,8 @@ import com.ecommerce.demo.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin("*")
 @RequiredArgsConstructor
@@ -19,4 +21,14 @@ public class CategoryController {
         return "success";
     }
 
+    @GetMapping("/list")
+    public List<Category> allCategories(){
+        return categoryService.allCategories();
+    }
+
+    @PutMapping("/update/{categoryId}")
+    public String editCategory(@RequestParam("categoryId") Integer id, @RequestBody Category category ){
+        categoryService.editCategory(id, category);
+        return "testing";
+    }
 }
