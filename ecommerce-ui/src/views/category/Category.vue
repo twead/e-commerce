@@ -18,28 +18,20 @@
 
 <script>
 import CategoryBox from '../../components/category/CategoryBox.vue'
-const axios = require("axios");
+//const axios = require("axios");
 
 export default {
   name:"Category",
+  props:["categories"],
+
   components:{CategoryBox},
   data() {
     return {
-        baseURL: "http://localhost:8080",
-        categories: []
     };
   },
   methods: {
-      async getCategories() {
-          await axios.get(`${this.baseURL}/category/list`).then(res => {
-              this.categories = res.data;
-          }).catch(err => {
-              console.log(err);
-          })
-      }
   },
   mounted(){
-      this.getCategories();
   }
 };
 </script>

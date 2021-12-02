@@ -5,9 +5,45 @@
       <router-link to="/about">About</router-link> |
       <router-link to="/admin/category/add">Add Category</router-link>
     </div>
-    <router-view/>
+    <router-view
+      :baseURL = "baseURL"
+      :categories = "categories"
+      :products = "products"
+    >
+    </router-view>
   </div>
 </template>
+
+<script>
+import axios from 'axios'
+export default {
+  data(){
+    return {
+      baseURL: "http://localhost:8080",
+      categories: [],
+      products: []
+    }
+  },
+  methods: {
+    async fetchData(){
+      await axios.get(this.baseURL + "/category/list").then(res => {
+        this.categories = res.data
+      }).catch(err => {
+        console.log(err);
+      })
+
+      await axios.get(this.baseURL + "/product/list").then(res => {
+        this.products = res.data
+      }).catch(err => {
+        console.log(err);
+      })
+    }
+  },
+  mounted() {
+    this.fetchData();
+  }
+}
+</script>
 
 <style>
 #app {
