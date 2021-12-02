@@ -5,6 +5,7 @@ import AddCategory from '../views/category/AddCategory.vue'
 import Category from '../views/category/Category.vue'
 import Admin from '../views/Admin.vue'
 import Product from '../views/product/Product.vue'
+import AddProduct from '../views/product/AddProduct.vue'
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     path: '/admin/product',
     name: 'Product',
     component: Product
+  },
+  {
+    path: '/admin/product/add',
+    name: 'AddProduct',
+    component: AddProduct
   },
 ]
 

@@ -1,7 +1,12 @@
 <template>
   <div class="container">
     <div class="row">
-      <h4>Products</h4>
+      <div class="col-12 text-center">
+        <h3 class="pt-3">Products</h3>
+        <router-link :to="{name:'AddProduct'}">
+          <button class="btn" style="float:right"> Add Product </button>
+        </router-link>
+      </div>
     </div>
     <div class="row">
       <div
