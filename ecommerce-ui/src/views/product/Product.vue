@@ -9,14 +9,20 @@
         :key="product.id"
         class="col-xl-4 col-md-6 col-12 pt-3 d-flex"
       >
-        <CategoryBox :product="product" />
+        <ProductBox :product="product" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import ProductBox from '../../components/product/ProductBox.vue'
+
+export default {
+    name: 'Product',
+    props:["products"],
+    components:{ProductBox}
+};
 </script>
 
 <style>
