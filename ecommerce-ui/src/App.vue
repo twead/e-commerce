@@ -1,4 +1,5 @@
 <template>
+  <Navbar />
   <div>
     <div id="nav">
       <router-link to="/">Home</router-link> |
@@ -15,8 +16,10 @@
 </template>
 
 <script>
+import Navbar from "./components/Navbar.vue";
 import axios from 'axios'
 export default {
+  components: { Navbar },
   data(){
     return {
       baseURL: "http://localhost:8080",
