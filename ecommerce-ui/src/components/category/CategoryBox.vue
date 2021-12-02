@@ -1,7 +1,7 @@
 <template>
-  <div class="card">
-    <div>
-      <img class="card-img-top" :src="category.imageUrl" alt="Card image cap" />
+  <div class="card w-100 h-100" style="margin-top: 10px">
+    <div class="embed-responsive embed-responsive-16by9">
+      <img class="card-img-top embed-responsive-item" :src="category.imageUrl" alt="Card image cap" />
     </div>
     <div class="card-body">
       <h5 class="card-title">{{category.categoryName}}</h5>
@@ -22,4 +22,7 @@ export default {
 </script>
 
 <style>
+.card-img-top{
+  object-fit: cover;
+}
 </style>
