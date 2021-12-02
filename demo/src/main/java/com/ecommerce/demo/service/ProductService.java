@@ -48,7 +48,7 @@ public class ProductService {
         return productDto;
     }
 
-    public void editProduct(ProductDto productDto, Integer id) throws EcommerceCustomException {
+    public void editProduct(Integer id, ProductDto productDto, Category category) throws EcommerceCustomException {
         Optional<Product> optionalProduct = productRepository.findById(id);
         if(optionalProduct.isEmpty()){
             throw new EcommerceCustomException("product not exists");
@@ -58,6 +58,7 @@ public class ProductService {
         product.setDescription(productDto.getDescription());
         product.setImageUrl(productDto.getImageUrl());
         product.setPrice(productDto.getPrice());
+        product.setCategory(category);
         productRepository.save(product);
     }
 

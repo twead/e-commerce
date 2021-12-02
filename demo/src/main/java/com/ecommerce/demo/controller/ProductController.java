@@ -38,13 +38,13 @@ public class ProductController {
         return new ResponseEntity<>(productService.allProduct(),HttpStatus.OK);
     }
 
-    @PostMapping("/update/{productId}")
+    @PutMapping("/update/{productId}")
     public ResponseEntity<ApiResponse> editProduct(@PathVariable("productId") Integer id, @RequestBody ProductDto product) throws EcommerceCustomException {
         Optional<Category> category = categoryService.findById(product.getCategoryId());
         if(category.isEmpty()){
             return new ResponseEntity<>(new ApiResponse(false,"category does not exists"), HttpStatus.BAD_REQUEST);
         }
-        productService.editProduct(product, id);
+        productService.editProduct(id, product, category.get());
         return new ResponseEntity<>(new ApiResponse(true,"product has been added"), HttpStatus.CREATED);
     }
 
